@@ -1,7 +1,7 @@
 //Importar Axios (Permite hacer llamadas HTTP)
 const axios = require('axios');
 
-//Función para obtener datos desde AI de Pokemon
+//Función para obtener datos desde API de Pokemon
 async function getContestTypeById(id) {
     const url = `https://pokeapi.co/api/v2/contest-type/${id}`;
     try {
@@ -10,7 +10,19 @@ async function getContestTypeById(id) {
         //devolver los datos de API
         return response.data;
     } catch (error) {
-        throw new Error('Error al obtener datos de la API de Pokemon');
+        throw new Error('Error al obtener datos de la API de Pokemon ContestType');
+    }
+}
+
+async function getBerryFlavorById(id) {
+    const url = `https://pokeapi.co/api/v2/berry-flavor/${id}`; // Se debe utilizar ` para ${id}
+    try {
+        const response = await axios.get(url);
+
+        //devolver los datos de API
+        return response.data;
+    } catch (error) {
+        throw new Error('Error al obtener datos de la API de Pokemon berry-flavor');
     }
 }
 
@@ -18,5 +30,6 @@ async function getContestTypeById(id) {
 //Permite que diferentes archivos dentro del proyecto se comuniquen entre sí y compartan funcionalidad
 //Beneficio: Código modular y reutilizable
 module.exports = {
-    getContestTypeById
+    getContestTypeById,
+    getBerryFlavorById
 };
